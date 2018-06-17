@@ -1,10 +1,17 @@
 {
+    "title": "SaltedBlog Proof of Concept",
     "posts": [
         {
-            "link": "poc",
+            "id": "poc",
             "file": "posts/poc.md",
             "title": "Proof of concept",
             "date": "2018-06-16 21:56:00 +0800"
+        },
+        {
+            "id": "anotherpost",
+            "file": "posts/anotherpost.md",
+            "title": "Yet Another Post",
+            "date": "2018-06-17 12:26:00 + 0800"
         }
     ]
 }
