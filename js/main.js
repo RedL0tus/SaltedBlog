@@ -67,6 +67,9 @@ function showIndex(meta) {
 function main() {
     let post = getUrlParam("post", "index");
     if (post != "index") {
+        if (window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1).includes("index.html")) {
+            window.location.href = window.location.href.replace("index.html", "post.html");
+        }
         getMeta("meta.json").then(meta => showPost(meta, post));
     } else {
         getMeta("meta.json").then(meta => showIndex(meta));
