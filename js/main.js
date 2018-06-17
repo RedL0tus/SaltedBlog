@@ -1,3 +1,13 @@
+/*
+ * SaltedBlog main JavaScript file
+ * Copyleft 2018 KayMW <RedL0tus@noreply.github.io>
+ * Licensed under the terms of GPLv3
+ */
+
+const INDEX = "index.html";
+const POST  = "post.html";
+const META  = "meta.json";
+
 /* 
  * Get URL parameters
  * https://html-online.com/articles/get-url-parameters-javascript/
@@ -58,7 +68,7 @@ function showIndex(meta) {
         document.getElementById("title").innerText = meta.title;
         document.title = meta.title;
         for (let i = 0; i < meta.posts.length; i += 1) {
-            document.getElementById("postsIndex").innerHTML += "<li><a href=\"post.html?post=" + meta.posts[i].id + "\">" + meta.posts[i].title + "</a></li>";
+            document.getElementById("postsIndex").innerHTML += "<li><a href=\""+ POST + "?post=" + meta.posts[i].id + "\">" + meta.posts[i].title + "</a></li>";
         }
     }
 }
@@ -67,12 +77,12 @@ function showIndex(meta) {
 function main() {
     let post = getUrlParam("post", "index");
     if (post != "index") {
-        if (window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1).includes("index.html")) {
-            window.location.href = window.location.href.replace("index.html", "post.html");
+        if (window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1).includes(INDEX)) {
+            window.location.href = window.location.href.replace(INDEX, POST);
         }
-        getMeta("meta.json").then(meta => showPost(meta, post));
+        getMeta(META).then(meta => showPost(meta, post));
     } else {
-        getMeta("meta.json").then(meta => showIndex(meta));
+        getMeta(META).then(meta => showIndex(meta));
     }
 }
 
