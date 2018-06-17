@@ -36,7 +36,7 @@ function getPost(url) {
         });
 }
 
-function renderPost(meta, id) {
+function showPost(meta, id) {
     if (meta != null) {
         for (let i = 0; i < meta.posts.length; i += 1) {
             if (meta.posts[i].id === id) {
@@ -67,7 +67,7 @@ function renderIndex(meta) {
 function main() {
     let post = getUrlParam("post", "index");
     if (post != "index") {
-        getMeta("meta.json").then(meta => renderPost(meta, post));
+        getMeta("meta.json").then(meta => showPost(meta, post));
     } else {
         getMeta("meta.json").then(meta => renderIndex(meta));
     }
