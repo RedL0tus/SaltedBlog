@@ -53,7 +53,7 @@ function showPost(meta, id) {
     }
 }
 
-function renderIndex(meta) {
+function showIndex(meta) {
     if (meta != null) {
         document.getElementById("title").innerText = meta.title;
         document.title = meta.title;
@@ -69,7 +69,7 @@ function main() {
     if (post != "index") {
         getMeta("meta.json").then(meta => showPost(meta, post));
     } else {
-        getMeta("meta.json").then(meta => renderIndex(meta));
+        getMeta("meta.json").then(meta => showIndex(meta));
     }
 }
 
