@@ -2,18 +2,14 @@
  * Get URL parameters
  * https://html-online.com/articles/get-url-parameters-javascript/
  */
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
-
 function getUrlParam(parameter, defaultvalue) {
-    var urlparameter = defaultvalue;
+    let urlparameter = defaultvalue;
     if (window.location.href.indexOf(parameter) > -1) {
-        urlparameter = getUrlVars()[parameter];
+        window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            if (key === parameter) {
+                urlparameter = value;
+            }
+        });
     }
     return urlparameter;
 }
