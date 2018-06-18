@@ -58,6 +58,7 @@ function showPost(meta, id) {
                             html      = converter.makeHtml(text);
                         document.getElementById("content").innerHTML = html;
                     });
+                break;
             }
         }
     }
