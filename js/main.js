@@ -52,6 +52,7 @@ function showPost(meta, id) {
             if (meta.posts[i].id === id) {
                 document.title = meta.posts[i].title;
                 document.getElementById("title").innerText = meta.posts[i].title;
+                document.getElementById("date").innerText = meta.posts[i].date;
                 getPost(meta.posts[i].file)
                     .then(function(text) {
                         var converter = new showdown.Converter(),
