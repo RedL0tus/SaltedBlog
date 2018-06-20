@@ -2,6 +2,9 @@
     "title": "SaltedBlog Proof of Concept",
     "description": "SaltedBlog",
     "link": "https://brined.fish/SaltedBlog",
+    "feed": "feed.xml",
     "meta": "meta.json",
-    "mode": "static"
+    "mode": "js",
+    "index": "index.html",
+    "post": "post.html"
 }
