@@ -1,0 +1,7 @@
+{
+    "title": "SaltedBlog Proof of Concept",
+    "description": "SaltedBlog",
+    "link": "https://brined.fish/SaltedBlog",
+    "meta": "meta.json",
+    "mode": "static"
+}

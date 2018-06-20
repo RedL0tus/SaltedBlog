@@ -6,7 +6,7 @@
 
 const INDEX = "index.html";
 const POST  = "post.html";
-const META  = "meta.json";
+const CONFIG = "config.json";
 
 /* 
  * Get URL parameters
@@ -65,13 +65,20 @@ function showPost(meta, id) {
     }
 }
 
-function showIndex(meta) {
-    if (meta != null) {
-        document.getElementById("title").innerText = meta.title;
-        document.title = meta.title;
-        for (let i = 0; i < meta.posts.length; i += 1) {
-            document.getElementById("postsIndex").innerHTML += "<li><a href=\""+ POST + "?post=" + meta.posts[i].id + "\">" + meta.posts[i].title + "</a></li>";
-        }
+function showIndex(config) {
+    if (config != null) {
+        document.getElementById("title").innerText = config.title;
+        document.title = config.title;
+        getMeta(config.meta).then(function(meta) {
+            if (meta.posts.length > 0) {
+                document.getElementById("postsIndex").innerHTML = "";
+                for (let i = 0; i < meta.posts.length; i += 1) {
+                    document.getElementById("postsIndex").innerHTML += "<li><a href=\""+ POST + "?post=" + meta.posts[i].id + "\">" + meta.posts[i].title + "</a></li>";
+                }
+            } else {
+                document.getElementById("postsIndex").innerHTML = "<p>Nothing yet.</p>";
+            }
+        });
     }
 }
 
@@ -82,10 +89,10 @@ function main() {
         if (window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1).includes(INDEX)) {
             window.location.href = window.location.href.replace(INDEX, POST);
         }
-        getMeta(META).then(meta => showPost(meta, post));
+        getMeta(CONFIG).then(config => getMeta(config.meta)).then(meta => showPost(meta, post));
     } else {
-        getMeta(META).then(meta => showIndex(meta));
+        getMeta(CONFIG).then(config => showIndex(config));
     }
 }
 
-main()
+main();
