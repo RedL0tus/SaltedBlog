@@ -31,9 +31,9 @@
         }
         /* Image hosts other than host itself */
         if (config.imgHosts.length > 0) {
-            for (var imgHost in config.imgHosts) {
-                self.toolbox.router.get(imgHost.path, self.toolbox.cacheFirst, {
-                    origin: imgHost.host,
+            for (let i = 0; i < config.imgHosts.length; i += 1) {
+                self.toolbox.router.get(config.imgHosts[i].path, self.toolbox.cacheFirst, {
+                    origin: config.imgHosts[i].host,
                     maxEntries: maxEntries
                 });
             }
