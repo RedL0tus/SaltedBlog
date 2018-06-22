@@ -1,0 +1,27 @@
+{
+    "short_name": "SaltedBlog",
+    "name": "SaltedBlog Proof of Concept",
+    "icons": [
+        {
+            "src": "icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/SaltedBlog",
+    "background_color": "#FFFFFF",
+    "theme_color": "#000000",
+    "display": "browser",
+    "scope": "/SaltedBlog/",
+    "hostname": "brined.fish",
+    "meta": "meta.json",
+    "mode": "js",
+    "feed": "feed.xml",
+    "index": "index.html",
+    "post": "post.html"
+}
