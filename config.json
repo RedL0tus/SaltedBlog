@@ -7,11 +7,4 @@
     "mode": "js",
     "index": "index.html",
     "post": "post.html",
-    "img": "/img/(.*)",
-    "imgHosts": [
-        {
-            "path": "/(.*)",
-            "host": "img.vim-cn.com" 
-        }
-    ]
 }
