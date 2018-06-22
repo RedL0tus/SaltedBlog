@@ -47,7 +47,7 @@
             workbox.strategies.cacheFirst({
                 cacheName: staticImageCacheName,
                 plugins: [
-                    new workbox.expiration.Plugins({
+                    new workbox.expiration.Plugin({
                         maxEntries: maxEntries,
                         maxAgeSeconds: 7 * 24 * 60 * 60
                     })
