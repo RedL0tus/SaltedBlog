@@ -39,27 +39,18 @@
             }
         }
 
-        let parser = document.createElement('a');
-        parser.href = config.link;
-        if (parser.pathname.endsWith("/")) {
-            let metaPath = parser.pathname + config.meta;
-            let configPath = parser.pathname + CONFIG;
-        } else {
-            let metaPath = parser.pathname + "/" + config.meta;
-            let configPath = parser.pathname + "/" + CONFIG;
-        }
-
-        /* Caching post meta */
+        /* Caching metas */
+        let parser = new URL(config.link);
         if (config.meta != null) {
-            self.toolbox.router.get(metaPath, self.toolbox.networkFirst, {
+            self.toolbox.router.get(parser.pathname + config.meta, self.toolbox.networkFirst, {
                 origin: parser.hostname,
                 maxEntries: maxEntries
             });
         }
 
-        self.toolbox.router.get(configPath, self.toolbox.networkFirst, {
+        self.toolbox.router.get(parser.pathname + CONFIG, self.toolbox.networkFirst, {
             origin: parser.hostname,
             maxEntries: maxEntries
-        })
+        });
     });
 })();
