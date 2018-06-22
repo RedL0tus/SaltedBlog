@@ -10,6 +10,7 @@
     let staticAssetsCacheName = "assets-" + cacheVersion;
     let contentCacheName = "content-" + cacheVersion;
     let vendorCacheName = "vendor-" + cacheVersion;
+    let maxEntries = 100;
 
     // Import sw-toolbox
     self.importScripts("https://cdnjs.cloudflare.com/ajax/libs/sw-toolbox/3.6.1/sw-toolbox.js");
