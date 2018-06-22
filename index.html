@@ -4,6 +4,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Loading...</title>
         <script type="text/javascript" src="js/main.js"></script>
+        <script>
+            if ('serviceWorker' in navigator) {navigator.serviceWorker.register('sw.js');
+            }
+        </script>
     </head>
     <body>
         <h1 id="title">Loading...</h1>
