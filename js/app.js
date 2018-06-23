@@ -87,6 +87,7 @@ function renderContent(url) {
                                 if (meta.posts[i].id === post) {
                                     let info = meta.posts[i];
                                     info.content = await renderContent(info.file);
+                                    Object.assign(info, manifest);
                                     addToQuery(info);
                                     break;
                                 }
