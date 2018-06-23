@@ -110,4 +110,9 @@ function renderContent(url) {
     document.addEventListener("DOMContentLoaded", function() {
         clearQuery();
     });
+    document.onreadystatechange = function() {
+        if (document.readyState === "complete") {
+            clearQuery();
+        }
+    }
 })(); 
