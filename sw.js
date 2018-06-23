@@ -4,7 +4,7 @@
 
 "use strict";
 (function(){
-    let cacheVersion = "20180622";
+    let cacheVersion = "20180623";
     let staticImageCacheName = "image-" + cacheVersion;
     let staticAssetsCacheName = "assets-" + cacheVersion;
     let contentCacheName = "content-" + cacheVersion;
