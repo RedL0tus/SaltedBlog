@@ -5,22 +5,23 @@
 set -e;
 
 SCRIPTS=$(dirname "$0");
+MANIFEST="manifest.json";
 
 # Getting basic info
-TITLE=$(jq -r '.title' config.json);
+TITLE=$(jq -r '.name' $MANIFEST);
 echo ">>> Title set to \"$TITLE\"";
-DESC=$(jq -r '.description' config.json);
+DESC=$(jq -r '.description' $MANIFEST);
 echo ">>> Description set to \"$DESC\"";
-LINK=$(jq -r '.link' config.json);
+LINK="$(jq -r '.hostname' $MANIFEST)$(jq -r '.scope' $MANIFEST)";
 echo ">>> Link set to \"$LINK\"";
-META=$(jq -r '.meta' config.json);
+META=$(jq -r '.meta' $MANIFEST);
 echo ">>> Meta set to \"$META\"";
-MODE=$(jq -r '.mode' config.json);
+MODE=$(jq -r '.mode' $MANIFEST);
 echo ">>> Mode set to $MODE";
 if [ $MODE == "js" ]; then
-	POST=$(jq -r '.post' config.json);
+	POST=$(jq -r '.post' $MANIFEST);
 fi
-OUTPUT=$(jq -r '.feed' config.json);
+OUTPUT=$(jq -r '.feed' $MANIFEST);
 echo ">>> Output set to \"$OUTPUT\"";
 
 # Find markdown.sh
@@ -45,7 +46,7 @@ for ROW in $(echo "${POSTS}" | jq -r '.[] | @base64'); do
 	echo ">>> Adding $POST_TITLE";
 	POST_DESC=$(cat $(_jq '.file') | /bin/bash $SCRIPTS/markdown.sh);
 	if [ $MODE == "js" ]; then
-		POST_LINK="$LINK/$POST?post=$(_jq '.id')";
+		POST_LINK="$LINK$POST?post=$(_jq '.id')";
 	fi
 	ITEMS="$ITEMS<item><title>$POST_TITLE</title><description>$POST_DESC</description><link>$POST_LINK</link></item>";
 done

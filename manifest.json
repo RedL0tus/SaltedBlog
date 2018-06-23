@@ -1,6 +1,7 @@
 {
     "short_name": "SaltedBlog",
-    "name": "SaltedBlog Proof of Concept",
+    "name": "SaltedBlog demo",
+    "description": "SaltedBlog reborn",
     "icons": [
         {
             "src": "icon-192.png",
