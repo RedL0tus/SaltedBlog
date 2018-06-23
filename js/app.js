@@ -44,7 +44,9 @@ function getUrlParam(parameter) {
 function clearQuery() {
     return new Promise(() => {
         for (let i = 0; i < QUERY.length; i += 1) {
-            document.documentElement.innerHTML = Mustache.render(document.documentElement.innerHTML, QUERY[i]);
+            require(["https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"], function(Mustache){
+                document.documentElement.innerHTML = Mustache.render(document.documentElement.innerHTML, QUERY[i]);
+            });
         }
     })
 }
@@ -61,8 +63,10 @@ function renderContent(url) {
         fetch(url)
             .then(text => text.text())
             .then(function(text) {
-                let converter = new showdown.Converter();
-                resolve(converter.makeHtml(text));
+                require(["https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js"], function(showdown){
+                    let converter = new showdown.Converter();
+                    resolve(converter.makeHtml(text));
+                });
             })
             .catch(error => console.log("Error while downloading post: " + error));
     })
