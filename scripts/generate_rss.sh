@@ -19,7 +19,7 @@ echo ">>> Meta set to \"$META\"";
 MODE=$(jq -r '.mode' $MANIFEST);
 echo ">>> Mode set to $MODE";
 if [ $MODE == "js" ]; then
-	POST=$(jq -r '.post' $MANIFEST);
+	POST=$(jq -r '.modeSettings.post' $MANIFEST);
 fi
 OUTPUT=$(jq -r '.feed' $MANIFEST);
 echo ">>> Output set to \"$OUTPUT\"";

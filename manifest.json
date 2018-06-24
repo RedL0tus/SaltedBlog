@@ -22,7 +22,10 @@
     "hostname": "brined.fish",
     "meta": "meta.json",
     "mode": "js",
-    "feed": "feed.xml",
-    "index": "index.html",
-    "post": "post.html"
+    "modeSettings": {
+        "index": "index.html",
+        "post": "post.html",
+        "redirect": true
+    },
+    "feed": "feed.xml"
 }

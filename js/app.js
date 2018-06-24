@@ -86,15 +86,18 @@ function renderContent(url, type) {
                         let info = {};
                         if (window.location.pathname
                                 .substring(window.location.pathname.lastIndexOf('/') + 1)
-                                .includes(manifest.index) 
-                            && (post != null)) {
-                            window.location.href = window.location.href.replace(manifest.index, manifest.post);
+                                .includes(manifest.modeSettings.index) 
+                            && (post != null)
+                            && (manifest.modeSettings.redirect === true)) {
+                            window.location.href = window.location.href.replace(manifest.modeSettings.index, manifest.modeSettings.post);
                         }
                         Object.assign(info, manifest);
+                        info.index = info.modeSettings.index;
+                        info.post = info.modeSettings.post;
                         info.posts = [];
                         for (let i = 0; i < meta.posts.length; i += 1) {
                             info.posts[i] = meta.posts[i];
-                            info.posts[i].link = manifest.post + "?post=" + info.posts[i].id;
+                            info.posts[i].link = manifest.modeSettings.post + "?post=" + info.posts[i].id;
                             if (meta.posts[i].id === post) {
                                 Object.assign(info, meta.posts[i]);
                                 info.content = await renderContent(info.file, info.type);
