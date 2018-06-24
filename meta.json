@@ -3,12 +3,14 @@
         {
             "id": "poc",
             "file": "posts/poc.md",
+            "type": "markdown",
             "title": "Proof of concept",
             "date": "2018-06-16 21:56:00 +0800"
         },
         {
             "id": "anotherpost",
             "file": "posts/anotherpost.md",
+            "type": "markdown",
             "title": "Yet Another Post",
             "date": "2018-06-17 12:26:00 +0800"
         }

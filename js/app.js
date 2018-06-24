@@ -58,17 +58,17 @@ async function addToQuery(object) {
     }
 }
 
-function renderContent(url) {
+function renderContent(url, type) {
     return new Promise(resolve => {
         fetch(url)
             .then(text => text.text())
             .then(function(text) {
-                require(["https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js"], function(showdown){
-                    let converter = new showdown.Converter();
-                    resolve(converter.makeHtml(text));
+                require([type], function(renderer) {
+                    console.log("Rendering using: " + renderer.info.description);
+                    resolve(renderer.render(text))
                 });
             })
-            .catch(error => console.log("Error while downloading post: " + error));
+            .catch(error => console.log("Error while rendering post: " + error));
     })
 }
 
@@ -90,7 +90,7 @@ function renderContent(url) {
                             for (let i = 0; i < meta.posts.length; i += 1) {
                                 if (meta.posts[i].id === post) {
                                     let info = meta.posts[i];
-                                    info.content = await renderContent(info.file);
+                                    info.content = await renderContent(info.file, info.type);
                                     Object.assign(info, manifest);
                                     addToQuery(info);
                                     break;
@@ -109,7 +109,6 @@ function renderContent(url) {
                     .catch(error => "Error while fetching posts meta: " + error);
             })
             .catch(error => console.log("Error while fetching manifest: " + error));
-        console.log("Done.");
     }
     document.addEventListener("DOMContentLoaded", function() {
         clearQuery();
