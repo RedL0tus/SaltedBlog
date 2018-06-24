@@ -83,28 +83,24 @@ function renderContent(url, type) {
                 fetch(manifest.meta)
                     .then(meta => meta.json())
                     .then(async function(meta) {
-                        if (post != null) {
-                            if (window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1).includes(manifest.index)) {
-                                window.location.href = window.location.href.replace(manifest.index, manifest.post);
-                            }
-                            for (let i = 0; i < meta.posts.length; i += 1) {
-                                if (meta.posts[i].id === post) {
-                                    let info = meta.posts[i];
-                                    info.content = await renderContent(info.file, info.type);
-                                    Object.assign(info, manifest);
-                                    addToQuery(info);
-                                    break;
-                                }
-                            }
-                        } else {
-                            let index = manifest;
-                            index.posts = [];
-                            for (let i = 0; i < meta.posts.length; i += 1) {
-                                index.posts[i] = meta.posts[i];
-                                index.posts[i].link = manifest.post + "?post=" + index.posts[i].id;
-                            }
-                            addToQuery(index);
+                        let info = {};
+                        if (window.location.pathname
+                                .substring(window.location.pathname.lastIndexOf('/') + 1)
+                                .includes(manifest.index) 
+                            && (post != null)) {
+                            window.location.href = window.location.href.replace(manifest.index, manifest.post);
                         }
+                        Object.assign(info, manifest);
+                        info.posts = [];
+                        for (let i = 0; i < meta.posts.length; i += 1) {
+                            info.posts[i] = meta.posts[i];
+                            info.posts[i].link = manifest.post + "?post=" + info.posts[i].id;
+                            if (meta.posts[i].id === post) {
+                                Object.assign(info, meta.posts[i]);
+                                info.content = await renderContent(info.file, info.type);
+                            }
+                        }
+                        addToQuery(info);
                     })
                     .catch(error => "Error while fetching posts meta: " + error);
             })
