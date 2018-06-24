@@ -49,6 +49,7 @@
                     document.documentElement.innerHTML = Mustache.render(document.documentElement.innerHTML, SaltedBlog.QUERY[i]);
                 });
             }
+            document.dispatchEvent(SaltedBlog.DONE);
         })
     }
     
@@ -115,7 +116,6 @@
         document.onreadystatechange = function() {
             if (document.readyState === "complete") {
                 clearQuery();
-                document.dispatchEvent(SaltedBlog.DONE);
             } else {
                 console.log("Document not loaded")
             }
