@@ -10,7 +10,13 @@
         <script async=true data-main="js/app" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"></script>
         <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin-ext,vietnamese"rel="stylesheet">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/loader.css">
         <link rel="alternate" type="application/rss+xml" title="{{ name }}" href="{{ feed }}">
+        <script>
+            document.addEventListener('SaltedBlogDone', function() {
+                document.getElementById("loading").style.display = "none";
+            });
+        </script>
         <script>
             // Check that service workers are registered
             if ('serviceWorker' in navigator) {
@@ -22,6 +28,17 @@
         </script>
     </head>
     <body>
+        <div class="loading" id="loading">
+            <div class="spinner">
+                <div class="sk-folding-cube">
+                    <div class="sk-cube1 sk-cube"></div>
+                    <div class="sk-cube2 sk-cube"></div>
+                    <div class="sk-cube4 sk-cube"></div>
+                    <div class="sk-cube3 sk-cube"></div>
+                </div>
+                <noscript>JavaScript is necessary for this site, you have to enable JavaScript to visit this site.</noscript>
+            </div>
+        </div>
         <div class="u-container">
             <div class="c-page">
                 <article class="c-article">
@@ -47,7 +64,6 @@
                             </header>
                             <div class="c-article__main">
                                 {{{ content }}}
-                                <noscript>JavaScript is necessary for this site, you have to enable JavaScript to visit this site.</noscript>
                             </div>
                         </article>
                     </div>
