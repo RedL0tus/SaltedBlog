@@ -47,9 +47,9 @@
             for (let i = 0; i < SaltedBlog.QUERY.length; i += 1) {
                 require(["https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"], function(Mustache){
                     document.documentElement.innerHTML = Mustache.render(document.documentElement.innerHTML, SaltedBlog.QUERY[i]);
+                    document.dispatchEvent(SaltedBlog.DONE);
                 });
             }
-            document.dispatchEvent(SaltedBlog.DONE);
         })
     }
     
