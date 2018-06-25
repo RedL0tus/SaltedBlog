@@ -113,6 +113,9 @@
                 })
                 .catch(error => console.log("Error while fetching manifest: " + error));
         }
+        document.addEventListener('DOMContentLoaded', function() {
+            clearQueue();
+        })
         document.onreadystatechange = function() {
             if (document.readyState === "complete") {
                 clearQuery();
