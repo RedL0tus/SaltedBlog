@@ -1,0 +1,7 @@
+First, huge thanks to you for you to have interest in this project. This post is located in `posts` directory. Go ahead and edit it and refresh the page to see your changes. SaltedBlog doesn't require any generation process if you are using `js` mode which is the default mode right now. If you had already deployed SaltedBlog to your server with a Service Worker, you may have to clear your browser's cache storage to see your modification take effects.
+
+To add posts, place your post wherever you want, and edit the posts meta you have chosen before (in this demo, it's `meta.json`). You have to specify the post `id`, `title`, `type`, `file (location)`, and `date` for the current theme to work correctly (Right now `id` and `file (location)` are necessary for any theme). Take a look at the source for this post to get an idea about how it works.
+
+SaltedBlog can support various post formats by placing suitable plugins to the same location as the core js file (which is `js` in this demo). The `type` you've written in your posts meta decided which file SaltedBlog is going to load. This post currently using Markdown plugin powered by [showdown](http://showdownjs.com/), huge thanks to its maintainers and CloudFlare's [cdnjs.com](https://cdnjs.com).
+
+Check out our (or sadly, my...?) [wiki](https://github.com/RedL0tus/SaltedBlog/wiki) for more info on how to get the most out of SaltedBlog. File bugs/feature requests/pull requests at [SaltedBlog's GitHub repo](https://github.com/RedL0tus/SaltedBlog). 
