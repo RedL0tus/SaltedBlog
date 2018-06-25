@@ -102,6 +102,10 @@
                             for (let i = 0; i < meta.posts.length; i += 1) {
                                 info.posts[i] = meta.posts[i];
                                 info.posts[i].link = manifest.modeSettings.post + "?post=" + info.posts[i].id;
+                                if (manifest.timeParsing === true) {
+                                    info.posts[i].date = new Date(info.posts[i].date)
+                                        .toLocaleDateString(manifest.locale, manifest.timeParsingOptions);
+                                }
                                 if (meta.posts[i].id === post) {
                                     Object.assign(info, meta.posts[i]);
                                     info.content = await renderContent(info.file, info.type);

@@ -27,5 +27,13 @@
         "post": "post.html",
         "redirect": true
     },
+    "locale": "en-US",
+    "timeParsing": true,
+    "timeParsingOptions": {
+        "weekday": "short",
+        "year": "numeric",
+        "month": "short",
+        "day": "numeric"
+    },
     "feed": "feed.xml"
 }
