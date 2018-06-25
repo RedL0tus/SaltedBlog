@@ -7,7 +7,7 @@
     let SaltedBlog = {};
     SaltedBlog.START = new Event('SaltedBlogStart');
     SaltedBlog.DONE = new Event('SaltedBlogDone');
-    SaltedBlog.QUERY = new Array();
+    SaltedBlog.QUEUE = new Array();
 
     /*
      * Find manifest
@@ -42,21 +42,21 @@
         })
     }
     
-    function clearQuery() {
+    function clearQueue() {
         return new Promise(() => {
-            for (let i = 0; i < SaltedBlog.QUERY.length; i += 1) {
+            for (let i = 0; i < SaltedBlog.QUEUE.length; i += 1) {
                 require(["https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"], function(Mustache){
-                    document.documentElement.innerHTML = Mustache.render(document.documentElement.innerHTML, SaltedBlog.QUERY[i]);
+                    document.documentElement.innerHTML = Mustache.render(document.documentElement.innerHTML, SaltedBlog.QUEUE[i]);
                     document.dispatchEvent(SaltedBlog.DONE);
                 });
             }
         })
     }
     
-    async function addToQuery(object) {
-        SaltedBlog.QUERY.push(object);
+    async function addToQueue(object) {
+        SaltedBlog.QUEUE.push(object);
         if (document.readyState === "complete") {
-            await clearQuery();
+            await clearQueue();
         }
     }
     
@@ -107,7 +107,7 @@
                                     info.content = await renderContent(info.file, info.type);
                                 }
                             }
-                            addToQuery(info);
+                            addToQueue(info);
                         })
                         .catch(error => "Error while fetching posts meta: " + error);
                 })
@@ -118,7 +118,7 @@
         })
         document.onreadystatechange = function() {
             if (document.readyState === "complete") {
-                clearQuery();
+                clearQueue();
             } else {
                 console.log("Document not loaded")
             }
